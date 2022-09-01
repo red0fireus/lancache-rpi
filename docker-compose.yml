@@ -4,21 +4,39 @@ services:
     image: jrcichra/lancachenet-lancache-dns:latest  ## Pulling DNS server for arm
     env_file: .env
     ports:
-      - ${DNS_BIND_IP}:5453:53/udp
-      - ${DNS_BIND_IP}:5453:53/tcp
+      - ${DNS_BIND_IP}:53:53/udp
+      - ${DNS_BIND_IP}:53:53/tcp
     restart: always
-##  sniproxy:
-##    image: jrcichra/lancachenet-sniproxy:latest  ## Pulling Sniproxy for arm
-##    env_file: .env
-##    ports:
-##      - 443:443/tcp
-##    restart: always
+  sniproxy:
+    image: jrcichra/lancachenet-sniproxy:latest  ## Pulling Sniproxy for arm
+    env_file: .env
+    ports:
+    #  - 443:443/tcp
+      - 192.168.1.214:443:443/tcp
+      - 192.168.1.215:443:443/tcp
+      - 192.168.1.216:443:443/tcp
+      - 192.168.1.217:443:443/tcp
+      - 192.168.1.218:443:443/tcp
+      - 192.168.1.219:443:443/tcp
+      - 192.168.1.220:443:443/tcp
+      - 192.168.1.221:443:443/tcp
+      - 192.168.1.222:443:443/tcp
+    restart: always
   monolithic:
     image: jrcichra/lancachenet-monolithic:latest ## Pulling monolithic for arm
     env_file: .env
     ports:
-      - 8085:80/tcp
-      - 3443:443/tcp
+    #  - 80:80/tcp
+    #  - 443:443/tcp
+      - 192.168.1.214:80:80/tcp
+      - 192.168.1.215:80:80/tcp
+      - 192.168.1.216:80:80/tcp
+      - 192.168.1.217:80:80/tcp
+      - 192.168.1.218:80:80/tcp
+      - 192.168.1.219:80:80/tcp
+      - 192.168.1.220:80:80/tcp
+      - 192.168.1.221:80:80/tcp
+      - 192.168.1.222:80:80/tcp
     restart: always
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache

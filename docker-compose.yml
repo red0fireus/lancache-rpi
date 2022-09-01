@@ -4,8 +4,8 @@ services:
     image: jrcichra/lancachenet-lancache-dns:latest  ## Pulling DNS server for arm
     env_file: .env
     ports:
-      - ${DNS_BIND_IP}:53:53/udp
-      - ${DNS_BIND_IP}:53:53/tcp
+      - ${DNS_BIND_IP}:5453:53/udp
+      - ${DNS_BIND_IP}:5453:53/tcp
     restart: always
 ##  sniproxy:
 ##    image: jrcichra/lancachenet-sniproxy:latest  ## Pulling Sniproxy for arm

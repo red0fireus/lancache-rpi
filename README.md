@@ -9,7 +9,7 @@
 # Installation
 - To install:
   -  If you don't already have docker and docker-compose, run `sudo apt install docker.io docker-compose`
-  - `sudo git clone https://github.com/jrcichra/lancache-rpi.git`
+  - `sudo git clone https://github.com/red0fireus/lancache-rpi.git`
   - `cd lancache-rpi`
   - `nano .env`
   - In the .env, follow annotations and modify LANCACHE_IP and DNS_BIND_IP to be the IP of the interface you want to expose this on. `0.0.0.0` might work but I recommend a single interface.

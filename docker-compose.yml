@@ -17,8 +17,8 @@ services:
     image: jrcichra/lancachenet-monolithic:latest ## Pulling monolithic for arm
     env_file: .env
     ports:
-      - 80:80/tcp
-      - 443:443/tcp
+      - 8085:80/tcp
+      - 3443:443/tcp
     restart: always
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache

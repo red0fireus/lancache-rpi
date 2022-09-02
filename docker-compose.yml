@@ -50,8 +50,8 @@ services:
       - 81:80/tcp
     # - 443:443/tcp
     volumes:
-      - ./workdir:/opt/adguardhome/work
-      - ./confdir:/opt/adguardhome/conf
+      - ${ADGUARD_ROOT}:/opt/adguardhome/work
+      - ${ADGUARD_ROOT}:/opt/adguardhome/conf
     networks:
       static-network:
         ipv4_address: 172.20.128.4
@@ -63,8 +63,8 @@ services:
       - 5053:53/tcp
       - 5053:53/udp
     volumes:
-      - ./server/dns-service/unbound/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
-      - ./server/dns-service/unbound/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
+      - ${UNBOUND_ROOT}/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
+      - ${UNBOUND_ROOT}/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
     networks:
       static-network:
         ipv4_address: 172.20.128.5

@@ -41,6 +41,7 @@ services:
   adguardhome:
     image: adguard/adguardhome
     container_name: adguardhome
+    env_file: .env
     ports:
       - 192.168.1.213:53:53/tcp
       - 192.168.1.213:53:53/udp
@@ -59,6 +60,7 @@ services:
   unbound:
     image: mvance/unbound:latest
     container_name: unbound
+    env_file: .env
     ports:
       - 5053:53/tcp
       - 5053:53/udp

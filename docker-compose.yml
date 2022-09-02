@@ -3,9 +3,9 @@ services:
   dns:
     image: jrcichra/lancachenet-lancache-dns:latest  ## Pulling DNS server for arm
     env_file: .env
-#    ports:
-#      - ${DNS_BIND_IP}:53:53/udp
-#      - ${DNS_BIND_IP}:53:53/tcp
+    ports:
+      - ${DNS_BIND_IP}:53:53/udp
+      - ${DNS_BIND_IP}:53:53/tcp
     networks:
       static-network:
         ipv4_address: 172.20.128.2

@@ -48,7 +48,7 @@ services:
       - ${CACHE_ROOT}/cache:/data/cache
       - ${CACHE_ROOT}/logs:/data/logs
   adguardhome:
-    image: adguard/adguardhome:latest
+    image: adguard/adguardhome
     container_name: adguardhome
     ports:
       - 53:53/tcp
@@ -61,7 +61,7 @@ services:
     volumes:
       - ./workdir:/opt/adguardhome/work
       - ./confdir:/opt/adguardhome/conf
-     networks:
+    networks:
       static-network:
         ipv4_address: 172.20.128.4
     restart: always
@@ -74,7 +74,7 @@ services:
     volumes:
       - ./workdir/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
       - ./confdir/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
-     networks:
+    networks:
       static-network:
         ipv4_address: 172.20.128.5
     restart: always

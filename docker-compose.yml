@@ -63,8 +63,8 @@ services:
       - 5053:53/tcp
       - 5053:53/udp
     volumes:
-      - ./workdir/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
-      - ./confdir/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
+      - ./server/dns-service/unbound/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
+      - ./server/dns-service/unbound/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
     networks:
       static-network:
         ipv4_address: 172.20.128.5

@@ -63,7 +63,7 @@ services:
       - 5053:53/tcp
       - 5053:53/udp
     volumes:
-      - ${UNBOUND_ROOT}/unbound:/opt/unbound/etc/unbound/
+      - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/
     networks:
       static-network:
         ipv4_address: 172.20.128.5

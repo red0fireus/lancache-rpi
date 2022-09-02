@@ -58,7 +58,7 @@ services:
         ipv4_address: 172.20.128.4
     restart: always
   unbound:
-    image: mvance/unbound:latest
+    image: mvance/unbound-rpi:latest
     container_name: unbound
     env_file: .env
     ports:

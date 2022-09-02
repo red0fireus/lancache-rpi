@@ -66,9 +66,10 @@ services:
       - 5335:53/udp
     volumes:
       - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/
-      - ${UNBOUND_ROOT}/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
-      - ${UNBOUND_ROOT}/srv-records.conf:/opt/unbound/etc/unbound/srv-records.conf
-      - ${UNBOUND_ROOT}/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
+    # You need to manually create these files below in the UNBOUND_ROOT dir.
+    #  - ${UNBOUND_ROOT}/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
+    #  - ${UNBOUND_ROOT}/srv-records.conf:/opt/unbound/etc/unbound/srv-records.conf
+    #  - ${UNBOUND_ROOT}/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
     networks:
       static-network:
         ipv4_address: 172.20.128.5

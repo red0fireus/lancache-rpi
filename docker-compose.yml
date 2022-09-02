@@ -78,6 +78,7 @@ services:
       static-network:
         ipv4_address: 172.20.128.5
     restart: always
+networks:
   static-network:
     ipam:
       config:

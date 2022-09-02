@@ -3,9 +3,12 @@ services:
   dns:
     image: jrcichra/lancachenet-lancache-dns:latest  ## Pulling DNS server for arm
     env_file: .env
-    ports:
-      - ${DNS_BIND_IP}:53:53/udp
-      - ${DNS_BIND_IP}:53:53/tcp
+#    ports:
+#      - ${DNS_BIND_IP}:53:53/udp
+#      - ${DNS_BIND_IP}:53:53/tcp
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
     restart: always
   sniproxy:
     image: jrcichra/lancachenet-sniproxy:latest  ## Pulling Sniproxy for arm
@@ -21,6 +24,9 @@ services:
       - 192.168.1.220:443:443/tcp
       - 192.168.1.221:443:443/tcp
       - 192.168.1.222:443:443/tcp
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.3
     restart: always
   monolithic:
     image: jrcichra/lancachenet-monolithic:latest ## Pulling monolithic for arm
@@ -41,3 +47,40 @@ services:
     volumes:
       - ${CACHE_ROOT}/cache:/data/cache
       - ${CACHE_ROOT}/logs:/data/logs
+  adguardhome:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    # - 784:784/udp
+    # - 853:853/tcp
+      - 3000:3000/tcp
+      - 81:80/tcp
+    # - 443:443/tcp
+    volumes:
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+     networks:
+      static-network:
+        ipv4_address: 172.20.128.4
+    restart: always
+  unbound:
+    image: mvance/unbound:latest
+    container_name: unbound
+    ports:
+      - 5353:53/tcp
+      - 5353:53/udp
+    volumes:
+      - ./workdir/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
+      - ./confdir/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
+     networks:
+      static-network:
+        ipv4_address: 172.20.128.5
+    restart: always
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          #docker-compose v3+ do not use ip_range
+          #ip_range: 172.28.5.0/24

@@ -60,8 +60,8 @@ services:
     image: mvance/unbound:latest
     container_name: unbound
     ports:
-      - 5353:53/tcp
-      - 5353:53/udp
+      - 5053:53/tcp
+      - 5053:53/udp
     volumes:
       - ./workdir/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
       - ./confdir/a-records.conf:/opt/unbound/etc/unbound/a-records.conf

@@ -66,6 +66,9 @@ services:
       - 5335:53/udp
     volumes:
       - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/
+      - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/forward-records.conf
+      - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/srv-records.conf
+      - ${UNBOUND_ROOT}:/opt/unbound/etc/unbound/a-records.conf
     networks:
       static-network:
         ipv4_address: 172.20.128.5

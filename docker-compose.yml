@@ -24,8 +24,8 @@ services:
     image: jrcichra/lancachenet-monolithic:latest ## Pulling monolithic for arm
     env_file: .env
     ports:
-      - 192.168.1.213:443:443/tcp
-      - 192.168.1.213:80:80/tcp
+      - 443:443/tcp
+      - 80:80/tcp
     networks:
       static-network:
         ipv4_address: 172.20.128.3
